@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    .txtCnt{width:30px;}
+    button{background:#5c6bee; color:#f7f7f7}
+</style>
+<script src="vue.js"></script>
+<body>
+<div id="app">
+    <button @click="handleAdd(index)">+</button>
+    <input class="txtCnt" type="text" v-model="item" />
+    <button @click="handleReduce(index)">-</button>
+</div>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                item:'1'
+            }
+        },
+        methods:{
+            handleReduce(index){
+                if (this.item>1)
+                    this.item--
+                else{
+                    alert("数量为1，不能再减")
+                }
+            },
+            handleAdd(index){
+                this.item++
+            }
+        },
+        watch:{
+            item(){
+                var reg=/^[0-9]+.?[0-9]*$/;
+                if (!reg.test(this.item)|this.item<0){
+                    this.number=1;
+                    alert("输入数据不合法")
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
